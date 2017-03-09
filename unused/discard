@@ -1,0 +1,50 @@
+vector<Value*> args;
+args.push_back(builder.getInt32(instrCnt.size()));
+
+GlobalVariable *gv, *gv2;
+IntegerType* IntTy_0 = IntegerType::get(BB->getContext(), 32);
+
+ArrayRef<uint32_t> arrRef(&(instr[0]), 128);
+
+ArrayType* ArrayTy_0 = ArrayType::get(IntTy_0, 128);
+PointerType *intPtrTy = PointerType::get(IntTy_0, 0);
+
+//Constant* instrConstant = ConstantInt::get(IntegerType::get(BB->getContext(),32),(intptr_t)instr);
+Constant* instrConstant = ConstantDataArray::get(BB->getContext(), arrRef);
+
+gv =  new llvm::GlobalVariable(
+                               *(BB->getModule()),
+                               instrConstant->getType(),
+                               true,
+                               GlobalValue::InternalLinkage,
+                               instrConstant,
+                               "");
+
+Value* instrPtr = builder.CreateCast(Instruction::BitCast, gv, intPtrTy, "");
+args.push_back(instrPtr);
+
+
+Constant* cntsConstant = ConstantInt::get(IntegerType::get(BB->getContext(),32),(intptr_t)cnts);
+gv2 =  new llvm::GlobalVariable(
+                               *(BB->getModule()),
+                               cntsConstant->getType(),
+                               true,
+                               GlobalValue::InternalLinkage,
+                               cntsConstant,
+                               "");
+Value* cntPtr = builder.CreateCast(Instruction::BitCast, gv, intPtrTy, "");
+args.push_back(cntPtr);
+
+//args.push_back(cntsAddr);
+/*
+args.push_back(new GlobalVariable(
+                    *(BB->getModule()),
+                    PointerType::get(IntegerType::get(BB->getContext(), 32), 0),
+                    false,
+                    GlobalVariable::CommonLinkage,
+                    cntsAddr,
+                    ""
+              ));
+              */
+
+builder.CreateCall(updateInstr, args);

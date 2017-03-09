@@ -1,0 +1,17 @@
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/liuche/Documents/CSE231/CSE231_Project/Passes
+CMake Error at DFA/CMakeLists.txt:1 (add_llvm_loadable_module):
+  Unknown CMake command "add_llvm_loadable_module".
+
+
+CMake Warning (dev) in CMakeLists.txt:
+  No cmake_minimum_required command is present.  A line of code such as
+
+    cmake_minimum_required(VERSION 3.6)
+
+  should be added at the top of the file.  The version specified may be lower
+  if you wish to support older CMake versions for this project.  For more
+  information run "cmake --help-policy CMP0000".
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring incomplete, errors occurred!
+See also "/Users/liuche/Documents/CSE231/CSE231_Project/Passes/cmake-build-debug/CMakeFiles/CMakeOutput.log".
