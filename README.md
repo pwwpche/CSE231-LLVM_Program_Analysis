@@ -1,4 +1,4 @@
-# CSE231-LLVM_Program_Analysis
+# CSE231 LLVM Program Analysis
 Project of UCSD CSE231 Advanced Compilers
 
 
