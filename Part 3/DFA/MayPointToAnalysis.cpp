@@ -130,9 +130,9 @@ public:
       for(auto ending : points){
         maypoints.insert(tempInfo->pointsTo[ending].begin(), tempInfo->pointsTo[ending].end());
       }
-
-      tempInfo->pointsTo[instrIdx] = maypoints;
-
+      if(isa<PointerType>(I->getType())){
+          tempInfo->pointsTo[instrIdx] = maypoints;
+      }
     }
 
     if(opcode == 31 ){ //Store
